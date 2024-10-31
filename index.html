@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Ray - 阿欸歪</title>
+	<meta name="colorful" content="XO PIXEL">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <style>
+      body {
+        margin:0px;
+        padding:0px;
+        /*設定背景圖片的呈現方式*/
+        /* background:#fff url(./img/background.png) center center fixed no-repeat;  */
+        /*設定背景圖片的填滿方式*/
+        /* background-size: cover; */
+        /*-webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;*/
+      }
+      iframe {
+          border: none;
+          position: fixed;
+          z-index: 99;
+      }
+      .nav {
+        height: 64px;
+      }
+       .slideshow {
+        background-color:darkgrey;
+       }
+
+       .slideshow img {
+        background-color:darkgrey;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        display: none;
+        height: calc(100% - 64px);
+       }
+       .slideshow-rwd img {
+        position: relative;
+        max-width: 100%;
+        height: 851px;
+        display: none;
+       }
+    </style>
+</head>
+
+<body>
+  <div class="nav">
+    <iframe src="navbar.html" style="width: 100%;" ></iframe>
+  </div>
+  
+  <div class="slideshow">
+    <img src="img/classmate.jpg" alt=""/>
+    <img src="img/family.jpg" alt=""/>
+  </div>
+
+  <div class="slideshow-rwd">
+    <img src="img/ray1.jpg" alt=""/>
+    <img src="img/ray2.jpg" alt=""/>
+  </div>
+
+
+</body>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script type='text/javascript' src='http://code.jquery.com/jquery-1.9.1.min.js'></script>
+<script>
+	 $(function () {     
+  //           $.ajax({
+  //               url: "http://oversoar.com/lizhi/public/api/select",   //存取Json的網址             
+  //               type: "POST",
+  //               dataType: 'json',
+  //               // data:{id:"111", user:"frank"},
+  //               //contentType: "application/json",
+  //               success: function (data) {
+  //               	console.log(data);
+  //               },
+  //               error: function (xhr, ajaxOptions, thrownError) {
+  //                   console.log(xhr.status);
+  //                   console.log(thrownError);
+  //               }
+  //           });
+
+        });
+
+
+  let windowWidth = $(window).width();
+  let windowHeight = $(window).height();
+
+  if (+windowWidth > + windowHeight) {
+    $('.slideshow').each(function () {
+      slideImgs = $(this).find('img'),
+      slideImgsCount = slideImgs.length,
+      currentIndex = 0;
+
+      slideImgs.eq(currentIndex).fadeIn();
+
+      setInterval(showNextSlide, 3000);
+
+      function showNextSlide() {
+        let nextIndex = (currentIndex + 1) % slideImgsCount;
+        console.log(nextIndex)
+        slideImgs.eq(currentIndex).fadeOut();
+        slideImgs.eq(nextIndex).fadeIn();
+        currentIndex = nextIndex;
+      }
+    })
+  } else {
+    $('.slideshow-rwd').each(function () {
+      slideImgs = $(this).find('img'),
+      slideImgsCount = slideImgs.length,
+      currentIndex = 0;
+
+      slideImgs.eq(currentIndex).fadeIn();
+
+      setInterval(showNextSlide, 3000);
+
+      function showNextSlide() {
+        let nextIndex = (currentIndex + 1) % slideImgsCount;
+        console.log(slideImgs.eq(currentIndex))
+        slideImgs.eq(currentIndex).fadeOut();
+        slideImgs.eq(nextIndex).fadeIn();
+        currentIndex = nextIndex;
+      }
+    })
+  }
+
+  
+</script>
